@@ -1,8 +1,9 @@
 /*
    A Software to control a 10x10 RGB LED Matrix with 4 Bit BAM (Brightness).
+   Can be controlled via ArtNet with a software like jinx.
    @author Tom Stein & Ferenc Stockbrink
-   @version 0.2.2
-   @date 16.march.2017
+   @version 0.3.0
+   @date 13.09.2018
 */
 #include "TeensyDMX.h"
 // Debug
@@ -177,11 +178,11 @@ int getDMX()
 }
 
 void loop() { 
-    if(getDMX() == 1) {
-        for (int8_t i = 0; i < 100; i++) {
+    if(getDMX() == 1) { // Check if new DMX values were recieved
+        for (int8_t i = 0; i < 100; i++) { // update current data with the new values
             int d = i * 3;
             leds[i].setRGB(data[d], data[d+1], data[d+2]);
         }
     }
-    BAM();
+    BAM(); // Perfrom one muliplexing cycle with bit angle modulation
 } 
