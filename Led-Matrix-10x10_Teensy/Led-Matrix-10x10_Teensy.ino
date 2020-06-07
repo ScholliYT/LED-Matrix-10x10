@@ -111,7 +111,7 @@ void BAM() {
       GPIOA_PCOR = (dataPinBitBang);  // Datapin low
       GPIOA_PCOR = (clockPinBitBang); // Clockpin low
       GPIOD_PCOR = (latchPinBitBang); // latch high
-      //delayMicroseconds(100);
+      delayMicroseconds(56); // (10^6 / 100 - 1550) / (16*10) = 53 ~ 100fps   adjust this value for fps
       if(analogRead(speedPinMultiplex) > 5) {
         delayMicroseconds(analogRead(speedPinMultiplex) * 100);
       }
